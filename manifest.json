@@ -1,0 +1,18 @@
+{
+  "name": "Maine 4th of July 2026",
+  "short_name": "Maine Trip",
+  "description": "Family trip itinerary — July 1-8, 2026",
+  "start_url": "./Maine_July4_2026.html",
+  "display": "standalone",
+  "background_color": "#1B3A5C",
+  "theme_color": "#1B3A5C",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%231B3A5C'/><text y='0.9em' font-size='360' x='50%' text-anchor='middle' dominant-baseline='hanging'>🦞</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

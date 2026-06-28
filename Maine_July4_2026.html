@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Maine Trip">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B3A5C'/><text y='.9em' font-size='70' x='50%' text-anchor='middle' dominant-baseline='hanging'>🦞</text></svg>">
+
+<title>Maine 4th of July 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy: #1B3A5C;
+    --seafoam: #2E86AB;
+    --lobster: #C0392B;
+    --sand: #F5EDD6;
+    --sand-dark: #EDE0C0;
+    --white: #FFFFFF;
+    --grey-light: #F7F7F5;
+    --grey-mid: #E8E4DC;
+    --grey-text: #6B6560;
+    --weather-bg: #EAF4FB;
+    --weather-border: #B8DDF0;
+    --confirmed: #1A7F4B;
+    --confirmed-bg: #E8F5EE;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--sand);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 48px 20px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(46,134,171,0.06) 20px,
+      rgba(46,134,171,0.06) 40px
+    );
+  }
+  .hero-flag {
+    font-size: 40px;
+    margin-bottom: 12px;
+    display: block;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    position: relative;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span {
+    color: #F5A623;
+  }
+  .hero-sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+  .hero-route {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    position: relative;
+  }
+  .hero-route span {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── SUMMARY CARDS ── */
+  .summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 16px;
+    background: var(--navy);
+    padding-top: 0;
+  }
+  .summary-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: white;
+  }
+  .summary-card .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+  }
+  .summary-card .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.3;
+  }
+  .summary-card .sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 2px;
+  }
+
+  /* ── CONFIRMED BANNER ── */
+  .confirmed-banner {
+    background: var(--confirmed-bg);
+    border-left: 4px solid var(--confirmed);
+    margin: 16px;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .confirmed-banner h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--confirmed);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .confirmed-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: #2D6A4F;
+    padding: 3px 0;
+  }
+  .confirmed-item .check { font-size: 14px; flex-shrink: 0; }
+
+  /* ── DAY CARDS ── */
+  .days { padding: 0 16px 20px; }
+  .days-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    padding: 20px 0 12px;
+    border-bottom: 2px solid var(--seafoam);
+    margin-bottom: 14px;
+  }
+
+  .day-card {
+    background: var(--white);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(27,58,92,0.08);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: stretch;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .day-num {
+    background: var(--navy);
+    color: white;
+    padding: 16px 14px;
+    min-width: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .day-num .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .day-num .dow {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 3px;
+  }
+  .day-num .date {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1px;
+  }
+  .day-title-area {
+    flex: 1;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .day-emoji { font-size: 20px; margin-bottom: 4px; }
+  .day-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .day-location {
+    font-size: 11px;
+    color: var(--grey-text);
+    margin-top: 3px;
+  }
+  .day-chevron {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    color: var(--seafoam);
+    font-size: 18px;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
+  .day-card.open .day-chevron { transform: rotate(180deg); }
+
+  /* special header colors */
+  .day-card.fourth .day-num { background: var(--lobster); }
+  .day-card.acadia .day-num { background: #2C5F3A; }
+  .day-card.depart .day-num { background: #555; }
+
+  /* ── DAY BODY ── */
+  .day-body {
+    display: none;
+    border-top: 1px solid var(--grey-mid);
+  }
+  .day-card.open .day-body { display: block; }
+
+  /* Weather strip */
+  .weather-strip {
+    background: var(--weather-bg);
+    border-bottom: 1px solid var(--weather-border);
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .weather-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .weather-row .wlabel {
+    font-weight: 600;
+    color: var(--seafoam);
+    min-width: 80px;
+    flex-shrink: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-top: 1px;
+  }
+  .weather-row .wval {
+    color: var(--navy);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* Activities */
+  .activities { padding: 8px 0 4px; }
+  .activity {
+    display: flex;
+    gap: 12px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--grey-light);
+  }
+  .activity:last-child { border-bottom: none; }
+  .act-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+    padding-top: 2px;
+  }
+  .act-content { flex: 1; }
+  .act-time {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--grey-text);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .act-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .act-name.confirmed::after {
+    content: ' ✅';
+    font-size: 12px;
+  }
+  .act-note {
+    font-size: 12px;
+    color: var(--grey-text);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .act-alt {
+    font-size: 11px;
+    color: var(--seafoam);
+    font-weight: 600;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* Tip / warn boxes */
+  .tip-box, .warn-box {
+    margin: 8px 16px 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    display: flex;
+    gap: 8px;
+  }
+  .tip-box {
+    background: #FFF8E1;
+    color: #7D6608;
+    border-left: 3px solid #F5C518;
+  }
+  .warn-box {
+    background: #FDEDEC;
+    color: #922B21;
+    border-left: 3px solid var(--lobster);
+    font-weight: 500;
+  }
+  .tip-box .ticon, .warn-box .ticon { font-size: 16px; flex-shrink: 0; }
+
+  /* ── LODGING SECTION ── */
+  .section {
+    margin: 0 16px 20px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    padding: 20px 0 10px;
+    border-bottom: 2px solid var(--seafoam);
+    margin-bottom: 12px;
+  }
+  .lodge-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(27,58,92,0.07);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .lodge-icon { font-size: 24px; flex-shrink: 0; }
+  .lodge-info { flex: 1; }
+  .lodge-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .lodge-addr { font-size: 12px; color: var(--grey-text); margin-top: 2px; }
+  .lodge-nights {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--confirmed);
+    background: var(--confirmed-bg);
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  /* ── REMINDERS ── */
+  .reminder-item {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.5;
+    box-shadow: 0 1px 6px rgba(27,58,92,0.06);
+  }
+  .reminder-icon { font-size: 16px; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 24px 20px 40px;
+    font-size: 12px;
+    color: var(--grey-text);
+  }
+  footer .emoji { font-size: 24px; display: block; margin-bottom: 8px; }
+
+  /* Tide badge */
+  .tide-badge {
+    display: inline-block;
+    background: #E8F4FD;
+    color: #1A5276;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 8px;
+    margin-top: 4px;
+    border: 1px solid #AED6F1;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-flag">🦞🎆🌊</span>
+  <h1>Maine <span>4th of July</span><br>Trip 2026</h1>
+  <p class="hero-sub">July 1 – 8 &nbsp;·&nbsp; Family of 10</p>
+  <div class="hero-route">
+    <span>Old Orchard Beach</span>
+    <span>Portland</span>
+    <span>Bar Harbor</span>
+    <span>Acadia</span>
+    <span>Ellsworth</span>
+  </div>
+</div>
+
+<!-- SUMMARY CARDS -->
+<div class="summary">
+  <div class="summary-card">
+    <div class="label">Arrive</div>
+    <div class="value">Wed, Jul 1</div>
+    <div class="sub">AA2353 · 4:45 PM</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">Depart</div>
+    <div class="value">Wed, Jul 8</div>
+    <div class="sub">AA2353 · 5:32 PM</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">Group</div>
+    <div class="value">10 People</div>
+    <div class="sub">4 adults · 2 kids · 2 teens</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">Nights</div>
+    <div class="value">7 Nights</div>
+    <div class="sub">3 properties</div>
+  </div>
+</div>
+
+<!-- CONFIRMED BOOKINGS -->
+<div class="confirmed-banner">
+  <h3>✅ All Bookings Confirmed</h3>
+  <div class="confirmed-item"><span class="check">✈️</span><span>AA2353 DFW→PWM Jul 1 · AA2353 PWM→DFW Jul 8</span></div>
+  <div class="confirmed-item"><span class="check">🏨</span><span>Waves Oceanfront Resort, Old Orchard Beach (Jul 1–5)</span></div>
+  <div class="confirmed-item"><span class="check">🏨</span><span>Bar Harbor Grand Hotel (Jul 5–7)</span></div>
+  <div class="confirmed-item"><span class="check">🏨</span><span>Hampton Inn Ellsworth (Jul 7–8)</span></div>
+  <div class="confirmed-item"><span class="check">🍽️</span><span>Table Salt · 6:30pm Monday Jul 6</span></div>
+  <div class="confirmed-item"><span class="check">⛵</span><span>Puffin & Lighthouse Cruise · 9:30am Mon Jul 6</span></div>
+  <div class="confirmed-item"><span class="check">⛰️</span><span>Cadillac Mtn Vehicle Pass · 4:00pm Tue Jul 7</span></div>
+</div>
+
+<!-- DAYS -->
+<div class="days">
+  <div class="days-title">📅 Day by Day</div>
+
+  <!-- DAY 1 -->
+  <div class="day-card" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num"><div class="num">1</div><div class="dow">Wed</div><div class="date">Jul 1</div></div>
+      <div class="day-title-area">
+        <div class="day-emoji">✈️</div>
+        <div class="day-title">Arrival — Lobster & Old Orchard Beach</div>
+        <div class="day-location">Portland · Gorham · Old Orchard Beach</div>
+      </div>
+      <div class="day-chevron">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="weather-strip">
+        <div class="weather-row"><span class="wlabel">🌤️ Forecast</span><span class="wval"><strong>High ~85°F · Sunny · 5% chance of rain</strong> — warmest day of the trip</span></div>
+        <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Shorts + casual t-shirt · comfortable travel shoes · light layer for evening</span></div>
+      </div>
+      <div class="activities">
+        <div class="activity"><div class="act-icon">✈️</div><div class="act-content"><div class="act-time">4:45 PM</div><div class="act-name confirmed">Arrive Portland Jetport — AA2353</div><div class="act-note">Baggage claim, load up, head straight to Gorham — about 15 min south.</div></div></div>
+        <div class="activity"><div class="act-icon">🦞</div><div class="act-content"><div class="act-time">~5:45 PM</div><div class="act-name">Gorham Lobster</div><div class="act-note">390 Main St, Gorham. Classic Maine seafood away from tourist pricing. Open Tue–Sat from 11:30am. Arrive hungry.</div></div></div>
+        <div class="activity"><div class="act-icon">🏨</div><div class="act-content"><div class="act-time">~7:30 PM</div><div class="act-name">Check In — Waves Oceanfront Resort</div><div class="act-note">87 W Grand Ave, Old Orchard Beach. Right on the oceanfront. Home for 4 nights — unpack and soak in that ocean air.</div></div></div>
+        <div class="activity"><div class="act-icon">🎆</div><div class="act-content"><div class="act-time">9:45 PM</div><div class="act-name">Thursday Fireworks (Optional)</div><div class="act-note">OOB runs fireworks every Thursday night all summer from the Pier. If kids have energy after the travel day, walk down and catch them.</div></div></div>
+      </div>
+      <div class="tip-box"><span class="ticon">💡</span><span>No pressure tonight — you have 7 full days ahead. Rest is a perfectly good choice after a travel day with young kids.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-card" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num"><div class="num">2</div><div class="dow">Thu</div><div class="date">Jul 2</div></div>
+      <div class="day-title-area">
+        <div class="day-emoji">🏖️</div>
+        <div class="day-title">Relaxed Beach Day — OOB</div>
+        <div class="day-location">Old Orchard Beach</div>
+      </div>
+      <div class="day-chevron">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="weather-strip">
+        <div class="weather-row"><span class="wlabel">🌤️ Forecast</span><span class="wval"><strong>High ~80°F · Sunny</strong> — classic Maine beach day</span></div>
+        <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Swim trunks + rash guard · flip flops · light hoodie for evening fireworks — ocean breeze cools fast after sunset</span></div>
+      </div>
+      <div class="activities">
+        <div class="activity"><div class="act-icon">🏖️</div><div class="act-content"><div class="act-time">Morning</div><div class="act-name">Full Beach Day</div><div class="act-note">Boardwalk rides, arcade, fried dough, and the classic OOB carnival energy. Let the kids exhaust themselves.</div></div></div>
+        <div class="activity"><div class="act-icon">🦞</div><div class="act-content"><div class="act-time">Lunch</div><div class="act-name">Lunch on the Pier</div><div class="act-note">Lobster rolls, fried clams, pier fries — the quintessential OOB lunch. No reservations needed.</div></div></div>
+        <div class="activity"><div class="act-icon">👨‍👩‍👧‍👦</div><div class="act-content"><div class="act-time">Afternoon</div><div class="act-name">Sister-in-Law's Family Arrives</div><div class="act-note">Driving up from Hartford — expect them sometime in the afternoon or evening. OOB is an easy meeting point.</div></div></div>
+        <div class="activity"><div class="act-icon">🎆</div><div class="act-content"><div class="act-time">9:45 PM</div><div class="act-name">Thursday Night Fireworks</div><div class="act-note">OOB runs fireworks every Thursday night all summer at 9:45pm from the Pier. Tonight is your first guaranteed chance!</div></div></div>
+      </div>
+      <div class="tip-box"><span class="ticon">💡</span><span>This is your only completely unscheduled day — enjoy it. The rest of the trip is packed with great activities.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-card" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num"><div class="num">3</div><div class="dow">Fri</div><div class="date">Jul 3</div></div>
+      <div class="day-title-area">
+        <div class="day-emoji">⛴️</div>
+        <div class="day-title">Portland, Casco Bay & Shipyard</div>
+        <div class="day-location">Portland · Peak Island · Old Orchard Beach</div>
+      </div>
+      <div class="day-chevron">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="weather-strip">
+        <div class="weather-row"><span class="wlabel">🌤️ Forecast</span><span class="wval"><strong>High ~78°F · Partly cloudy</strong> — low chance of rain</span></div>
+        <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Comfortable shorts + moisture-wicking t-shirt · sneakers or walking shoes · light hoodie for the ferry — open water is noticeably cooler than land</span></div>
+      </div>
+      <div class="activities">
+        <div class="activity"><div class="act-icon">🏛️</div><div class="act-content"><div class="act-time">9:00 AM</div><div class="act-name">Portland Head Light</div><div class="act-note">Cape Elizabeth — Maine's most iconic lighthouse on dramatic rocky cliffs inside Fort Williams Park. Allow 90 min. ~25 min from OOB. Paid parking ~$6.</div></div></div>
+        <div class="activity"><div class="act-icon">⛴️</div><div class="act-content"><div class="act-time">11:30 AM</div><div class="act-name">Casco Bay Lines Ferry</div><div class="act-note">~20 min from Portland Head Light. Ferries run regularly to Peak Island — a scenic 20-min crossing of Casco Bay.</div></div></div>
+        <div class="activity"><div class="act-icon">🚲</div><div class="act-content"><div class="act-time">12:00 PM</div><div class="act-name">Peak Island — Brad's Bike Rental</div><div class="act-note">Rent bikes right at the ferry dock. Quiet lanes, ocean views, and the pace of island life. Kids will love it.</div></div></div>
+        <div class="activity"><div class="act-icon">🍺</div><div class="act-content"><div class="act-time">~3:30 PM</div><div class="act-name">Shipyard Brewing Company</div><div class="act-note">Return from the ferry and stop at Shipyard before heading south — one of Portland's most iconic breweries. A well-earned adult break.</div></div></div>
+        <div class="activity"><div class="act-icon">🏨</div><div class="act-content"><div class="act-time">~5:30 PM</div><div class="act-name">Return to Waves Oceanfront Resort</div><div class="act-note">Grab dinner on the boardwalk, then catch the July 3rd fireworks at the Pier at 9:45pm!</div></div></div>
+      </div>
+      <div class="tip-box"><span class="ticon">💡</span><span>OOB does fireworks on July 3rd AND 4th at 9:45pm — catching them both nights is totally reasonable with kids this age.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 4 - 4th of July -->
+  <div class="day-card fourth" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num"><div class="num">4</div><div class="dow">Sat</div><div class="date">Jul 4</div></div>
+      <div class="day-title-area">
+        <div class="day-emoji">🎆</div>
+        <div class="day-title">4th of July at Old Orchard Beach</div>
+        <div class="day-location">Old Orchard Beach</div>
+      </div>
+      <div class="day-chevron">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="weather-strip">
+        <div class="weather-row"><span class="wlabel">☀️ Forecast</span><span class="wval"><strong>High ~80°F · Sunny</strong> — perfect 4th of July weather</span></div>
+        <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Swim trunks for the morning beach · change into festive shorts + t-shirt for the concert · light layer for 9:45pm fireworks — temps drop after dark</span></div>
+      </div>
+      <div class="activities">
+        <div class="activity"><div class="act-icon">🏖️</div><div class="act-content"><div class="act-time">9:30 AM</div><div class="act-name">Morning Beach Day</div><div class="act-note">Claim your spot early. Boardwalk rides, arcade, and carnival energy humming all day. The 3 and 5 year olds will be in heaven.</div></div></div>
+        <div class="activity"><div class="act-icon">🦞</div><div class="act-content"><div class="act-time">12:00 PM</div><div class="act-name">Lunch on the Pier</div><div class="act-note">Lobster rolls, fried clams, and pier fries — quintessential OOB.</div></div></div>
+        <div class="activity"><div class="act-icon">🎺</div><div class="act-content"><div class="act-time">7:00 PM</div><div class="act-name">Free Concert — 195th Army National Guard Band</div><div class="act-note">Seaside Pavilion, 8 Sixth St. Bring a blanket and enjoy the patriotic set.</div></div></div>
+        <div class="activity"><div class="act-icon">🎆</div><div class="act-content"><div class="act-time">9:45 PM</div><div class="act-name">4th of July Fireworks over the Ocean</div><div class="act-note">Launched from the Pier and Palace Playland right on the beach. Watch from the sand — one of the best fireworks spots in New England.</div></div></div>
+        <div class="activity"><div class="act-icon">🏨</div><div class="act-content"><div class="act-time">~11:00 PM</div><div class="act-name">Return to Waves Oceanfront Resort</div><div class="act-note">A short walk back from the beach. Early-ish bedtime — big days ahead!</div></div></div>
+      </div>
+      <div class="tip-box"><span class="ticon">💡</span><span>Old Orchard Street closes to traffic at 5pm on the 4th — arrive early or park outside the closure zone and walk in.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day-card" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num"><div class="num">5</div><div class="dow">Sun</div><div class="date">Jul 5</div></div>
+      <div class="day-title-area">
+        <div class="day-emoji">🚗</div>
+        <div class="day-title">Mid-Coast Drive to Bar Harbor</div>
+        <div class="day-location">Freeport · Bucksport · Bar Harbor</div>
+      </div>
+      <div class="day-chevron">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="weather-strip">
+        <div class="weather-row"><span class="wlabel">⛅ Forecast</span><span class="wval"><strong>High ~75°F · Partly cloudy</strong> — low chance of rain, cooler heading north</span></div>
+        <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Hiking shorts or lightweight pants + moisture-wicking t-shirt · broken-in hiking shoes or trail runners · light jacket for car AC and Acadia breezes</span></div>
+      </div>
+      <div class="activities">
+        <div class="activity"><div class="act-icon">🛍️</div><div class="act-content"><div class="act-time">9:30 AM</div><div class="act-name">L.L. Bean Flagship, Freeport</div><div class="act-note">Open daily — pick up any hiking gear or layers before Acadia. Kids love the giant boot statue.</div></div></div>
+        <div class="activity"><div class="act-icon">🗼</div><div class="act-content"><div class="act-time">~11:30 AM</div><div class="act-name">Penobscot Narrows Observatory</div><div class="act-note">Bucksport — the only open-air bridge observatory in the Western Hemisphere. Breathtaking panoramic views; kids love the glass floor elevator.</div></div></div>
+        <div class="activity"><div class="act-icon">🌊</div><div class="act-content"><div class="act-time">~1:13 PM</div><div class="act-name">Thunder Hole, Park Loop Road — OR —</div><div class="act-note">Best window: 1:13–2:13pm (before 3:13pm high tide). Waves boom into the rocky inlet dramatically. If you do Thunder Hole today → Gorham Mountain tomorrow.</div><div class="act-alt">⇄ Or do Gorham Mountain today, Thunder Hole tomorrow (window: 1:55–2:55pm)</div></div></div>
+        <div class="activity"><div class="act-icon">🥾</div><div class="act-content"><div class="act-time">~1:30 PM</div><div class="act-name">Gorham Mountain Trailhead — OR —</div><div class="act-note">3.4 miles through open granite slabs, panoramic coastal views, and sea cliffs. One of Acadia's best all-around hikes.</div></div></div>
+        <div class="activity"><div class="act-icon">🏨</div><div class="act-content"><div class="act-time">~4:30 PM</div><div class="act-name confirmed">Bar Harbor Grand Hotel — Check In</div><div class="act-note">269 Main Street. 4.7 stars, free breakfast, free parking. Explore the Village Green and waterfront before dinner.</div></div></div>
+      </div>
+      <div class="tip-box"><span class="ticon">💡</span><span>Thunder Hole window is 1:13–2:13pm on July 5. Whatever you don't do today, you'll do tomorrow.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-card" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num"><div class="num">6</div><div class="dow">Mon</div><div class="date">Jul 6</div></div>
+      <div class="day-title-area">
+        <div class="day-emoji">⛵</div>
+        <div class="day-title">Puffin Cruise, Acadia & Table Salt</div>
+        <div class="day-location">Bar Harbor · Acadia National Park</div>
+      </div>
+      <div class="day-chevron">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="weather-strip">
+        <div class="weather-row"><span class="wlabel">⛅ Forecast</span><span class="wval"><strong>High ~72°F · Variable clouds</strong> — cooler on the water and at elevation</span></div>
+        <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">⚠️ Windproof jacket or fleece for the 9:30am cruise — significantly cooler on the water · Hiking shorts + trail runners for post-cruise Acadia · Smart casual (chinos + collared shirt) for Table Salt dinner</span></div>
+      </div>
+      <div class="activities">
+        <div class="activity"><div class="act-icon">⛵</div><div class="act-content"><div class="act-time">9:30 AM</div><div class="act-name confirmed">Puffin & Lighthouse Cruise — Bar Harbor Whale Watch Co.</div><div class="act-note">Departs 9:30am. Visits Petit Manan Island — an active puffin nesting colony where researchers narrate via radio. Also takes in three lighthouses including Winter Harbor Lighthouse.</div></div></div>
+        <div class="activity"><div class="act-icon">🏖️</div><div class="act-content"><div class="act-time">~1:00 PM</div><div class="act-name">Sand Beach & Ocean Path</div><div class="act-note">Acadia's only sandy ocean beach. Walk the stunning pink granite Ocean Path — first 0.7 miles to Thunder Hole is paved and perfect for little ones.</div></div></div>
+        <div class="activity"><div class="act-icon">🌊</div><div class="act-content"><div class="act-time">~1:55 PM</div><div class="act-name">Thunder Hole — OR —</div><div class="act-note">Best window Day 6: 1:55–2:55pm (before 3:55pm high tide). Do today if you did Gorham Mountain on Day 5.</div><div class="tide-badge">🌊 Best: 1:55–2:55pm</div></div></div>
+        <div class="activity"><div class="act-icon">🥾</div><div class="act-content"><div class="act-time">~2:00 PM</div><div class="act-name">Gorham Mountain Loop — OR —</div><div class="act-note">Do today if you did Thunder Hole on Day 5. 3.4 miles through granite slabs, coastal views, and sea cliffs.</div></div></div>
+        <div class="activity"><div class="act-icon">🥾</div><div class="act-content"><div class="act-time">~4:00 PM</div><div class="act-name">North Bubble Trail (Optional)</div><div class="act-note">1.5-mile round trip, ~300ft gain. Stunning elevated views of Jordan Pond. Worth it if energy allows — skip if tired ahead of dinner.</div></div></div>
+        <div class="activity"><div class="act-icon">🍽️</div><div class="act-content"><div class="act-time">6:30 PM</div><div class="act-name confirmed">Table Salt, Bar Harbor</div><div class="act-note">Confirmed 6:30pm reservation. Legendary lobster roll, exceptional ribeye, house-made truffles. The finest meal in Maine.</div></div></div>
+      </div>
+      <div class="tip-box"><span class="ticon">💡</span><span>Thunder Hole window on Day 6 is 1:55–2:55pm. Sand Beach → Ocean Path flows naturally right into Thunder Hole.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day-card acadia" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num"><div class="num">7</div><div class="dow">Tue</div><div class="date">Jul 7</div></div>
+      <div class="day-title-area">
+        <div class="day-emoji">⛰️</div>
+        <div class="day-title">Bar Island, Jordan Pond & Cadillac</div>
+        <div class="day-location">Bar Harbor · Acadia · Ellsworth</div>
+      </div>
+      <div class="day-chevron">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="weather-strip">
+        <div class="weather-row"><span class="wlabel">⛅ Forecast</span><span class="wval"><strong>High ~72°F · Partly cloudy</strong> — full Acadia day</span></div>
+        <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Moisture-wicking t-shirt + hiking shorts or pants · hiking shoes or trail runners — full day on trails · layer for Cadillac summit — 1,530ft runs 10–15°F cooler with wind</span></div>
+      </div>
+      <div class="activities">
+        <div class="activity"><div class="act-icon">🏝️</div><div class="act-content"><div class="act-time">9:30 AM</div><div class="act-name">Bar Island Land Bridge</div><div class="act-note">Sandbar from downtown Bar Harbor connects to Bar Island. Flat, easy walk with tide pools the kids will love. Be back by 11:30am.</div><div class="tide-badge">🌊 Low tide 10:27am · Enter 9:30–11:30am</div></div></div>
+        <div class="activity"><div class="act-icon">🧺</div><div class="act-content"><div class="act-time">12:30 PM</div><div class="act-name">Picnic Lunch at Jordan Pond</div><div class="act-note">Pick up supplies from a Bar Harbor market on your way out. The lawn overlooking the pond with the Bubble Mountains backdrop is iconic — same view as Jordan Pond House, no reservation needed.</div></div></div>
+        <div class="activity"><div class="act-icon">🥾</div><div class="act-content"><div class="act-time">~2:00 PM</div><div class="act-name">Jordan Pond Loop Trail</div><div class="act-note">3.3 miles, 4.8 stars — the best family-friendly trail in Acadia. Mostly flat, circling the crystal-clear glacially formed pond.</div></div></div>
+        <div class="activity"><div class="act-icon">⛰️</div><div class="act-content"><div class="act-time">4:00 PM</div><div class="act-name confirmed">Cadillac Mountain Summit Loop — 4:00pm Entry</div><div class="act-note">At 1,530ft, the highest point on the eastern seaboard. Late afternoon light over Frenchman Bay is spectacular. 0.5-mile paved Summit Loop — perfect for all ages.</div></div></div>
+        <div class="activity"><div class="act-icon">🚗</div><div class="act-content"><div class="act-time">~5:00 PM</div><div class="act-name">Drive to Ellsworth (~20 min)</div><div class="act-note">Short drive for the final night — well positioned for tomorrow's Freeport stops.</div></div></div>
+        <div class="activity"><div class="act-icon">🏨</div><div class="act-content"><div class="act-time">~5:30 PM</div><div class="act-name confirmed">Check In — Hampton Inn Ellsworth</div><div class="act-note">6 Downeast Hwy. Easy base — 45 min from Freeport and a comfortable start for departure day.</div></div></div>
+      </div>
+      <div class="warn-box"><span class="ticon">⚠️</span><span>Bar Island Land Bridge: be back on the Bar Harbor side by 11:30am — the sandbar covers quickly as the tide comes back in.</span></div>
+    </div>
+  </div>
+
+  <!-- DAY 8 -->
+  <div class="day-card depart" onclick="toggle(this)">
+    <div class="day-header">
+      <div class="day-num"><div class="num">8</div><div class="dow">Wed</div><div class="date">Jul 8</div></div>
+      <div class="day-title-area">
+        <div class="day-emoji">✈️</div>
+        <div class="day-title">Departure — Freeport Detour</div>
+        <div class="day-location">Ellsworth · Freeport · Portland Airport</div>
+      </div>
+      <div class="day-chevron">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="weather-strip">
+        <div class="weather-row"><span class="wlabel">☀️ Forecast</span><span class="wval"><strong>High ~78°F · Sunny</strong> — great departure day</span></div>
+        <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Comfortable shorts + t-shirt · easy walking shoes for Desert of Maine and Wolfe's Neck · travel-friendly outfit for the flight home</span></div>
+      </div>
+      <div class="activities">
+        <div class="activity"><div class="act-icon">☕</div><div class="act-content"><div class="act-time">Morning</div><div class="act-name">Hotel Breakfast & Checkout</div><div class="act-note">Grab breakfast, load up, head south toward Freeport — about 45 min from Ellsworth.</div></div></div>
+        <div class="activity"><div class="act-icon">🏜️</div><div class="act-content"><div class="act-time">~9:30 AM</div><div class="act-name">Desert of Maine (Time Permitting)</div><div class="act-note">A real desert formed from glacial mineral deposits slowly swallowing an old farmstead. Guided tours through expanding sand dunes and forest. Kids love it. ⚠️ Closes 2pm on weekdays — do this first!</div></div></div>
+        <div class="activity"><div class="act-icon">🌲</div><div class="act-content"><div class="act-time">~11:00 AM</div><div class="act-name">Wolfe's Neck Woods State Park (Time Permitting)</div><div class="act-note">Easy coastal trails through shaded forest to Casco Bay. Osprey nests, water views, friendly park rangers. A peaceful final Maine moment. Open until 7pm.</div></div></div>
+        <div class="activity"><div class="act-icon">🚗</div><div class="act-content"><div class="act-time">~1:00 PM</div><div class="act-name">Drive to Portland Airport</div><div class="act-note">~25 min from Freeport. Return rental car, check bags, clear security comfortably.</div></div></div>
+        <div class="activity"><div class="act-icon">✈️</div><div class="act-content"><div class="act-time">5:32 PM</div><div class="act-name confirmed">Depart Portland — AA2353</div><div class="act-note">Arrives Dallas/Fort Worth 8:56pm. Have an amazing trip home! 🦞</div></div></div>
+      </div>
+      <div class="tip-box"><span class="ticon">💡</span><span>Desert of Maine closes at 2pm on weekdays — do it first, then Wolfe's Neck on the way south.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LODGING -->
+<div class="section">
+  <div class="section-title">🏨 Where You're Staying</div>
+  <div class="lodge-card">
+    <div class="lodge-icon">🌊</div>
+    <div class="lodge-info">
+      <div class="lodge-name">Waves Oceanfront Resort</div>
+      <div class="lodge-addr">87 W Grand Ave, Old Orchard Beach</div>
+      <div class="lodge-nights">✅ Jul 1–5 · 4 nights</div>
+    </div>
+  </div>
+  <div class="lodge-card">
+    <div class="lodge-icon">🏔️</div>
+    <div class="lodge-info">
+      <div class="lodge-name">Bar Harbor Grand Hotel</div>
+      <div class="lodge-addr">269 Main Street, Bar Harbor</div>
+      <div class="lodge-nights">✅ Jul 5–7 · 2 nights · Free breakfast & parking</div>
+    </div>
+  </div>
+  <div class="lodge-card">
+    <div class="lodge-icon">🏨</div>
+    <div class="lodge-info">
+      <div class="lodge-name">Hampton Inn Ellsworth</div>
+      <div class="lodge-addr">6 Downeast Hwy, Ellsworth</div>
+      <div class="lodge-nights">✅ Jul 7–8 · 1 night</div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY REMINDERS -->
+<div class="section">
+  <div class="section-title">⚡ Key Reminders</div>
+  <div class="reminder-item"><span class="reminder-icon">🌊</span><span><strong>Thunder Hole tides:</strong> Best window 1:13–2:13pm on Jul 5, or 1:55–2:55pm on Jul 6. Do one day Thunder Hole, the other Gorham Mountain.</span></div>
+  <div class="reminder-item"><span class="reminder-icon">🏝️</span><span><strong>Bar Island Land Bridge (Jul 7):</strong> Low tide 10:27am. Enter 9:30–11:30am and be back by 11:30am — sandbar covers quickly.</span></div>
+  <div class="reminder-item"><span class="reminder-icon">⛰️</span><span><strong>Cadillac Mountain:</strong> Vehicle pass confirmed for Jul 7 at 4:00pm. Also bring your Acadia park pass — both required.</span></div>
+  <div class="reminder-item"><span class="reminder-icon">⛵</span><span><strong>Puffin Cruise:</strong> Confirmed Jul 6 at 9:30am. Bring a windproof jacket — significantly cooler on the water.</span></div>
+  <div class="reminder-item"><span class="reminder-icon">🍽️</span><span><strong>Table Salt:</strong> Confirmed 6:30pm Monday Jul 6. Smart casual attire.</span></div>
+  <div class="reminder-item"><span class="reminder-icon">🧺</span><span><strong>Jordan Pond picnic (Jul 7):</strong> Pick up supplies from a Bar Harbor market before heading into Acadia. Same iconic view, no reservation needed.</span></div>
+  <div class="reminder-item"><span class="reminder-icon">🏜️</span><span><strong>Desert of Maine (Jul 8):</strong> Closes at 2pm on weekdays — visit before Wolfe's Neck. Wolfe's Neck open until 7pm.</span></div>
+  <div class="reminder-item"><span class="reminder-icon">🚗</span><span><strong>Tolls:</strong> Maine Turnpike (I-95) runs ~$10–15 total for the trip. Ask your rental company about their toll transponder policy.</span></div>
+</div>
+
+<footer>
+  <span class="emoji">🦞🎆🌊</span>
+  Maine 4th of July Trip 2026 &nbsp;·&nbsp; July 1–8<br>
+  Have an amazing trip!
+</footer>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('open');
+  }
+  // Open Day 1 by default
+  document.querySelector('.day-card').classList.add('open');
+</script>
+
+<script>
+  // Service Worker for offline support
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+</script>
+
+</body>
+</html>
