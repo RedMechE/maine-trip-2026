@@ -440,9 +440,79 @@
     margin-top: 4px;
     border: 1px solid #AED6F1;
   }
+
+  /* ── INSTALL BANNER ── */
+  .install-banner {
+    background: #1B3A5C;
+    color: white;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+  }
+  .install-banner.hidden { display: none; }
+  .install-icon { font-size: 28px; flex-shrink: 0; }
+  .install-text { flex: 1; }
+  .install-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .install-steps {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
+  }
+  .install-steps .step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .install-steps .arrow { color: #F5A623; font-weight: 700; }
+  .install-dismiss {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .install-dismiss:active { background: rgba(255,255,255,0.25); }
+  .share-icon {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 1px 6px;
+    font-size: 14px;
+  }
+
 </style>
 </head>
 <body>
+
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="installBanner">
+  <div class="install-icon">📲</div>
+  <div class="install-text">
+    <strong>Add to your Home Screen for easy access</strong>
+    <div class="install-steps">
+      <div class="step"><span class="arrow">1</span> Tap the Share button <span class="share-icon">⬆️</span> at the bottom of Safari</div>
+      <div class="step"><span class="arrow">2</span> Scroll down and tap <strong>"Add to Home Screen"</strong></div>
+      <div class="step"><span class="arrow">3</span> Tap <strong>"Add"</strong> — a 🦞 icon appears on your home screen!</div>
+    </div>
+  </div>
+  <button class="install-dismiss" onclick="dismissBanner()" aria-label="Dismiss">✕</button>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -505,7 +575,7 @@
       <div class="day-title-area">
         <div class="day-emoji">✈️</div>
         <div class="day-title">Arrival — Lobster & Old Orchard Beach</div>
-        <div class="day-location">Portland · Gorham · Old Orchard Beach</div>
+        <div class="day-location">Old Orchard Beach</div>
       </div>
       <div class="day-chevron">▾</div>
     </div>
@@ -515,12 +585,11 @@
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Shorts + casual t-shirt · comfortable travel shoes · light layer for evening</span></div>
       </div>
       <div class="activities">
-        <div class="activity"><div class="act-icon">✈️</div><div class="act-content"><div class="act-time">4:45 PM</div><div class="act-name confirmed">Arrive Portland Jetport — AA2353</div><div class="act-note">Baggage claim, load up, head straight to Gorham — about 15 min south.</div></div></div>
-        <div class="activity"><div class="act-icon">🦞</div><div class="act-content"><div class="act-time">~5:45 PM</div><div class="act-name">Gorham Lobster</div><div class="act-note">390 Main St, Gorham. Classic Maine seafood away from tourist pricing. Open Tue–Sat from 11:30am. Arrive hungry.</div></div></div>
-        <div class="activity"><div class="act-icon">🏨</div><div class="act-content"><div class="act-time">~7:30 PM</div><div class="act-name">Check In — Waves Oceanfront Resort</div><div class="act-note">87 W Grand Ave, Old Orchard Beach. Right on the oceanfront. Home for 4 nights — unpack and soak in that ocean air.</div></div></div>
-        <div class="activity"><div class="act-icon">🎆</div><div class="act-content"><div class="act-time">9:45 PM</div><div class="act-name">Thursday Fireworks (Optional)</div><div class="act-note">OOB runs fireworks every Thursday night all summer from the Pier. If kids have energy after the travel day, walk down and catch them.</div></div></div>
+        <div class="activity"><div class="act-icon">✈️</div><div class="act-content"><div class="act-time">4:45 PM</div><div class="act-name confirmed">Arrive Portland Jetport — AA2353</div><div class="act-note">Baggage claim, load up, and head south to Old Orchard Beach — about 30 min.</div></div></div>
+        <div class="activity"><div class="act-icon">🏨</div><div class="act-content"><div class="act-time">~5:45 PM</div><div class="act-name">Check In — Waves Oceanfront Resort</div><div class="act-note">87 W Grand Ave, Old Orchard Beach. Right on the oceanfront. Home for 4 nights — unpack and soak in that ocean air.</div></div></div>
+
       </div>
-      <div class="tip-box"><span class="ticon">💡</span><span>No pressure tonight — you have 7 full days ahead. Rest is a perfectly good choice after a travel day with young kids.</span></div>
+      <div class="tip-box"><span class="ticon">💡</span><span>No pressure tonight — you have 7 full days ahead. Get settled, grab something easy nearby, and enjoy the ocean air. Gorham Lobster is on the agenda for lunch tomorrow!</span></div>
     </div>
   </div>
 
@@ -542,9 +611,9 @@
       </div>
       <div class="activities">
         <div class="activity"><div class="act-icon">🏖️</div><div class="act-content"><div class="act-time">Morning</div><div class="act-name">Full Beach Day</div><div class="act-note">Boardwalk rides, arcade, fried dough, and the classic OOB carnival energy. Let the kids exhaust themselves.</div></div></div>
-        <div class="activity"><div class="act-icon">🦞</div><div class="act-content"><div class="act-time">Lunch</div><div class="act-name">Lunch on the Pier</div><div class="act-note">Lobster rolls, fried clams, pier fries — the quintessential OOB lunch. No reservations needed.</div></div></div>
-        <div class="activity"><div class="act-icon">👨‍👩‍👧‍👦</div><div class="act-content"><div class="act-time">Afternoon</div><div class="act-name">Sister-in-Law's Family Arrives</div><div class="act-note">Driving up from Hartford — expect them sometime in the afternoon or evening. OOB is an easy meeting point.</div></div></div>
+        <div class="activity"><div class="act-icon">🦞</div><div class="act-content"><div class="act-time">12:00 PM</div><div class="act-name">Gorham Lobster</div><div class="act-note">390 Main St, Gorham — about 15 min from OOB. Classic Maine seafood away from tourist pricing. Open Tue–Sat from 11:30am. The perfect welcome lunch for the whole group.</div></div></div>
         <div class="activity"><div class="act-icon">🎆</div><div class="act-content"><div class="act-time">9:45 PM</div><div class="act-name">Thursday Night Fireworks</div><div class="act-note">OOB runs fireworks every Thursday night all summer at 9:45pm from the Pier. Tonight is your first guaranteed chance!</div></div></div>
+        <div class="activity"><div class="act-icon">👨‍👩‍👧‍👦</div><div class="act-content"><div class="act-time">Evening</div><div class="act-name">Sister-in-Law's Family Arrives</div><div class="act-note">Driving up from Hartford — expect them Thursday evening. OOB is an easy meeting point.</div></div></div>
       </div>
       <div class="tip-box"><span class="ticon">💡</span><span>This is your only completely unscheduled day — enjoy it. The rest of the trip is packed with great activities.</span></div>
     </div>
@@ -573,7 +642,7 @@
         <div class="activity"><div class="act-icon">🍺</div><div class="act-content"><div class="act-time">~3:30 PM</div><div class="act-name">Shipyard Brewing Company</div><div class="act-note">Return from the ferry and stop at Shipyard before heading south — one of Portland's most iconic breweries. A well-earned adult break.</div></div></div>
         <div class="activity"><div class="act-icon">🏨</div><div class="act-content"><div class="act-time">~5:30 PM</div><div class="act-name">Return to Waves Oceanfront Resort</div><div class="act-note">Grab dinner on the boardwalk, then catch the July 3rd fireworks at the Pier at 9:45pm!</div></div></div>
       </div>
-      <div class="tip-box"><span class="ticon">💡</span><span>OOB does fireworks on July 3rd AND 4th at 9:45pm — catching them both nights is totally reasonable with kids this age.</span></div>
+      <div class="tip-box"><span class="ticon">💡</span><span>No fireworks tonight — the next show is the big one on July 4th. Tonight's a great low-key boardwalk dinner night.</span></div>
     </div>
   </div>
 
@@ -767,6 +836,19 @@
   function toggle(card) {
     card.classList.toggle('open');
   }
+
+  // Install banner logic
+  function dismissBanner() {
+    document.getElementById('installBanner').classList.add('hidden');
+    localStorage.setItem('installBannerDismissed', '1');
+  }
+  // Hide banner if already dismissed or already installed as PWA
+  if (localStorage.getItem('installBannerDismissed') ||
+      window.navigator.standalone === true) {
+    var b = document.getElementById('installBanner');
+    if (b) b.classList.add('hidden');
+  }
+
   // Open Day 1 by default
   document.querySelector('.day-card').classList.add('open');
 </script>
