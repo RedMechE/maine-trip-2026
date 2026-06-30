@@ -956,7 +956,7 @@
           const rainChance = data.daily.precipitation_probability_max[i];
           const emoji = weatherEmoji(code);
           const desc = weatherDesc(code);
-          const sourceUrl = `https://open-meteo.com/en/docs#latitude=${lat}&longitude=${lon}`;
+          const sourceUrl = `https://forecast.weather.gov/MapClick.php?lat=${lat}&lon=${lon}`;
 
           const valEl = document.getElementById(`wx-val-${date}`);
           const rowEl = document.getElementById(`wx-${date}`);
