@@ -1,4 +1,4 @@
-const CACHE_NAME = 'maine-trip-2026-v4';
+const CACHE_NAME = 'maine-trip-2026-v6';
 const ASSETS = [
   './Maine_July4_2026.html',
   './manifest.json'
