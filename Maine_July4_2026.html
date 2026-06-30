@@ -441,6 +441,26 @@
     border: 1px solid #AED6F1;
   }
 
+  .live-badge {
+    display: inline-block;
+    background: #E8F5EE;
+    color: #1A7F4B;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    margin-left: 6px;
+    border: 1px solid #A8E0C0;
+    vertical-align: middle;
+  }
+  .live-badge.stale {
+    background: #F4F1E8;
+    color: #8A7B4A;
+    border-color: #DCD2A8;
+  }
+
   /* ── INSTALL BANNER ── */
   .install-banner {
     background: #1B3A5C;
@@ -581,7 +601,7 @@
     </div>
     <div class="day-body">
       <div class="weather-strip">
-        <div class="weather-row"><span class="wlabel">🌤️ Forecast</span><span class="wval"><strong>High ~85°F · Sunny · 5% chance of rain</strong> — warmest day of the trip</span></div>
+        <div class="weather-row" id="wx-2026-07-01"><span class="wlabel">🌤️ Forecast</span><span class="wval" id="wx-val-2026-07-01"><strong>High ~85°F · Sunny · 5% chance of rain</strong> — warmest day of the trip</span></div>
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Shorts + casual t-shirt · comfortable travel shoes · light layer for evening</span></div>
       </div>
       <div class="activities">
@@ -606,7 +626,7 @@
     </div>
     <div class="day-body">
       <div class="weather-strip">
-        <div class="weather-row"><span class="wlabel">🌤️ Forecast</span><span class="wval"><strong>High ~80°F · Sunny</strong> — classic Maine beach day</span></div>
+        <div class="weather-row" id="wx-2026-07-02"><span class="wlabel">🌤️ Forecast</span><span class="wval" id="wx-val-2026-07-02"><strong>High ~80°F · Sunny</strong> — classic Maine beach day</span></div>
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Swim trunks + rash guard · flip flops · light hoodie for evening fireworks — ocean breeze cools fast after sunset</span></div>
       </div>
       <div class="activities">
@@ -632,7 +652,7 @@
     </div>
     <div class="day-body">
       <div class="weather-strip">
-        <div class="weather-row"><span class="wlabel">🌤️ Forecast</span><span class="wval"><strong>High ~78°F · Partly cloudy</strong> — low chance of rain</span></div>
+        <div class="weather-row" id="wx-2026-07-03"><span class="wlabel">🌤️ Forecast</span><span class="wval" id="wx-val-2026-07-03"><strong>High ~78°F · Partly cloudy</strong> — low chance of rain</span></div>
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Comfortable shorts + moisture-wicking t-shirt · sneakers or walking shoes · light hoodie for the ferry — open water is noticeably cooler than land</span></div>
       </div>
       <div class="activities">
@@ -659,7 +679,7 @@
     </div>
     <div class="day-body">
       <div class="weather-strip">
-        <div class="weather-row"><span class="wlabel">☀️ Forecast</span><span class="wval"><strong>High ~80°F · Sunny</strong> — perfect 4th of July weather</span></div>
+        <div class="weather-row" id="wx-2026-07-04"><span class="wlabel">☀️ Forecast</span><span class="wval" id="wx-val-2026-07-04"><strong>High ~80°F · Sunny</strong> — perfect 4th of July weather</span></div>
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Swim trunks for the morning beach · change into festive shorts + t-shirt for the concert · light layer for 9:45pm fireworks — temps drop after dark</span></div>
       </div>
       <div class="activities">
@@ -686,7 +706,7 @@
     </div>
     <div class="day-body">
       <div class="weather-strip">
-        <div class="weather-row"><span class="wlabel">⛅ Forecast</span><span class="wval"><strong>High ~75°F · Partly cloudy</strong> — low chance of rain, cooler heading north</span></div>
+        <div class="weather-row" id="wx-2026-07-05"><span class="wlabel">⛅ Forecast</span><span class="wval" id="wx-val-2026-07-05"><strong>High ~75°F · Partly cloudy</strong> — low chance of rain, cooler heading north</span></div>
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Hiking shorts or lightweight pants + moisture-wicking t-shirt · broken-in hiking shoes or trail runners · light jacket for car AC and Acadia breezes</span></div>
       </div>
       <div class="activities">
@@ -713,7 +733,7 @@
     </div>
     <div class="day-body">
       <div class="weather-strip">
-        <div class="weather-row"><span class="wlabel">⛅ Forecast</span><span class="wval"><strong>High ~72°F · Variable clouds</strong> — cooler on the water and at elevation</span></div>
+        <div class="weather-row" id="wx-2026-07-06"><span class="wlabel">⛅ Forecast</span><span class="wval" id="wx-val-2026-07-06"><strong>High ~72°F · Variable clouds</strong> — cooler on the water and at elevation</span></div>
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">⚠️ Windproof jacket or fleece for the 9:30am cruise — significantly cooler on the water · Hiking shorts + trail runners for post-cruise Acadia · Smart casual (chinos + collared shirt) for Table Salt dinner</span></div>
       </div>
       <div class="activities">
@@ -741,7 +761,7 @@
     </div>
     <div class="day-body">
       <div class="weather-strip">
-        <div class="weather-row"><span class="wlabel">⛅ Forecast</span><span class="wval"><strong>High ~72°F · Partly cloudy</strong> — full Acadia day</span></div>
+        <div class="weather-row" id="wx-2026-07-07"><span class="wlabel">⛅ Forecast</span><span class="wval" id="wx-val-2026-07-07"><strong>High ~72°F · Partly cloudy</strong> — full Acadia day</span></div>
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Moisture-wicking t-shirt + hiking shorts or pants · hiking shoes or trail runners — full day on trails · layer for Cadillac summit — 1,530ft runs 10–15°F cooler with wind</span></div>
       </div>
       <div class="activities">
@@ -769,7 +789,7 @@
     </div>
     <div class="day-body">
       <div class="weather-strip">
-        <div class="weather-row"><span class="wlabel">☀️ Forecast</span><span class="wval"><strong>High ~78°F · Sunny</strong> — great departure day</span></div>
+        <div class="weather-row" id="wx-2026-07-08"><span class="wlabel">☀️ Forecast</span><span class="wval" id="wx-val-2026-07-08"><strong>High ~78°F · Sunny</strong> — great departure day</span></div>
         <div class="weather-row"><span class="wlabel">👕 Wear</span><span class="wval">Comfortable shorts + t-shirt · easy walking shoes for Desert of Maine and Wolfe's Neck · travel-friendly outfit for the flight home</span></div>
       </div>
       <div class="activities">
@@ -860,6 +880,101 @@
       navigator.serviceWorker.register('sw.js').catch(() => {});
     });
   }
+</script>
+
+<script>
+  // ── LIVE WEATHER — Open-Meteo (free, no API key required) ──
+  const WEATHER_LOCATIONS = {
+    // dates → which coordinates to use
+    '2026-07-01': { lat: 43.5168, lon: -70.3756, name: 'Old Orchard Beach' },
+    '2026-07-02': { lat: 43.5168, lon: -70.3756, name: 'Old Orchard Beach' },
+    '2026-07-03': { lat: 43.5168, lon: -70.3756, name: 'Old Orchard Beach' },
+    '2026-07-04': { lat: 43.5168, lon: -70.3756, name: 'Old Orchard Beach' },
+    '2026-07-05': { lat: 44.3876, lon: -68.2039, name: 'Bar Harbor' },
+    '2026-07-06': { lat: 44.3876, lon: -68.2039, name: 'Bar Harbor' },
+    '2026-07-07': { lat: 44.3876, lon: -68.2039, name: 'Bar Harbor' },
+    '2026-07-08': { lat: 44.3876, lon: -68.2039, name: 'Ellsworth/Portland' },
+  };
+
+  function weatherEmoji(code) {
+    // WMO weather codes → emoji
+    if (code === 0) return '☀️';
+    if ([1,2].includes(code)) return '🌤️';
+    if (code === 3) return '☁️';
+    if ([45,48].includes(code)) return '🌫️';
+    if ([51,53,55,56,57].includes(code)) return '🌦️';
+    if ([61,63,65,66,67,80,81,82].includes(code)) return '🌧️';
+    if ([71,73,75,77,85,86].includes(code)) return '❄️';
+    if ([95,96,99].includes(code)) return '⛈️';
+    return '🌤️';
+  }
+
+  function weatherDesc(code) {
+    const map = {
+      0: 'Clear sky', 1: 'Mostly clear', 2: 'Partly cloudy', 3: 'Overcast',
+      45: 'Foggy', 48: 'Foggy',
+      51: 'Light drizzle', 53: 'Drizzle', 55: 'Heavy drizzle',
+      56: 'Freezing drizzle', 57: 'Freezing drizzle',
+      61: 'Light rain', 63: 'Rain', 65: 'Heavy rain',
+      66: 'Freezing rain', 67: 'Freezing rain',
+      71: 'Light snow', 73: 'Snow', 75: 'Heavy snow', 77: 'Snow grains',
+      80: 'Rain showers', 81: 'Rain showers', 82: 'Violent rain showers',
+      85: 'Snow showers', 86: 'Snow showers',
+      95: 'Thunderstorm', 96: 'Thunderstorm w/ hail', 99: 'Thunderstorm w/ hail',
+    };
+    return map[code] || 'Variable';
+  }
+
+  async function fetchLiveWeather() {
+    // Group dates by unique coordinates to minimize API calls
+    const uniqueCoords = {};
+    Object.entries(WEATHER_LOCATIONS).forEach(([date, loc]) => {
+      const key = `${loc.lat},${loc.lon}`;
+      if (!uniqueCoords[key]) uniqueCoords[key] = { ...loc, dates: [] };
+      uniqueCoords[key].dates.push(date);
+    });
+
+    for (const key in uniqueCoords) {
+      const { lat, lon, dates } = uniqueCoords[key];
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&timezone=America%2FNew_York&start_date=${dates[0]}&end_date=${dates[dates.length-1]}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Weather fetch failed');
+        const data = await res.json();
+
+        data.daily.time.forEach((date, i) => {
+          if (!dates.includes(date)) return;
+          const high = Math.round(data.daily.temperature_2m_max[i]);
+          const low = Math.round(data.daily.temperature_2m_min[i]);
+          const code = data.daily.weather_code[i];
+          const rainChance = data.daily.precipitation_probability_max[i];
+          const emoji = weatherEmoji(code);
+          const desc = weatherDesc(code);
+
+          const valEl = document.getElementById(`wx-val-${date}`);
+          const rowEl = document.getElementById(`wx-${date}`);
+          if (valEl && rowEl) {
+            valEl.innerHTML = `<strong>High ${high}°F (low ${low}°F) · ${desc} · ${rainChance}% rain</strong> <span class="live-badge">Live</span>`;
+            // Update the label emoji too
+            const labelEl = rowEl.querySelector('.wlabel');
+            if (labelEl) labelEl.textContent = `${emoji} Forecast`;
+          }
+        });
+      } catch (err) {
+        // Fallback: mark as using estimated data, keep the pre-written text
+        dates.forEach(date => {
+          const valEl = document.getElementById(`wx-val-${date}`);
+          if (valEl && !valEl.innerHTML.includes('live-badge')) {
+            valEl.innerHTML += ` <span class="live-badge stale" title="${err.message}">Estimated</span>`;
+          }
+        });
+        console.warn('Live weather unavailable for', dates, err.message, err);
+      }
+    }
+  }
+
+  // Run on load — works offline-gracefully via try/catch above
+  fetchLiveWeather();
 </script>
 
 </body>
