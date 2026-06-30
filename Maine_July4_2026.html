@@ -454,11 +454,17 @@
     margin-left: 6px;
     border: 1px solid #A8E0C0;
     vertical-align: middle;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .live-badge:active {
+    background: #D0EEDD;
   }
   .live-badge.stale {
     background: #F4F1E8;
     color: #8A7B4A;
     border-color: #DCD2A8;
+    cursor: help;
   }
 
   /* ── INSTALL BANNER ── */
@@ -893,7 +899,7 @@
     '2026-07-05': { lat: 44.3876, lon: -68.2039, name: 'Bar Harbor' },
     '2026-07-06': { lat: 44.3876, lon: -68.2039, name: 'Bar Harbor' },
     '2026-07-07': { lat: 44.3876, lon: -68.2039, name: 'Bar Harbor' },
-    '2026-07-08': { lat: 44.3876, lon: -68.2039, name: 'Ellsworth/Portland' },
+    '2026-07-08': { lat: 44.5434, lon: -68.4195, name: 'Ellsworth' },
   };
 
   function weatherEmoji(code) {
@@ -937,7 +943,7 @@
     for (const key in uniqueCoords) {
       const { lat, lon, dates } = uniqueCoords[key];
       try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&timezone=America%2FNew_York&start_date=${dates[0]}&end_date=${dates[dates.length-1]}`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&timezone=America%2FNew_York&models=gfs_seamless&start_date=${dates[0]}&end_date=${dates[dates.length-1]}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error('Weather fetch failed');
         const data = await res.json();
@@ -950,11 +956,12 @@
           const rainChance = data.daily.precipitation_probability_max[i];
           const emoji = weatherEmoji(code);
           const desc = weatherDesc(code);
+          const sourceUrl = `https://open-meteo.com/en/docs#latitude=${lat}&longitude=${lon}`;
 
           const valEl = document.getElementById(`wx-val-${date}`);
           const rowEl = document.getElementById(`wx-${date}`);
           if (valEl && rowEl) {
-            valEl.innerHTML = `<strong>High ${high}°F (low ${low}°F) · ${desc} · ${rainChance}% rain</strong> <span class="live-badge">Live</span>`;
+            valEl.innerHTML = `<strong>High ${high}°F (low ${low}°F) · ${desc} · ${rainChance}% rain</strong> <a href="${sourceUrl}" target="_blank" rel="noopener" class="live-badge" onclick="event.stopPropagation()">Live ↗</a>`;
             // Update the label emoji too
             const labelEl = rowEl.querySelector('.wlabel');
             if (labelEl) labelEl.textContent = `${emoji} Forecast`;
